@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+</head>
+<body>
+ <h1>T<span style="color:yellow">O</span>D<span style="color:yellow">O</span>L<span style="color:pink">I</span>S<span style="color:pink">T</span></h1>
+<section class="section1">
+    <div class="container">
+	    <div class="todo">
+		    <input type="text" placeholder="add todo list...." id="text">
+			<button onClick="addTask()">save</button>
+		</div>
+		<div class="list">
+		    <ul id="todoul">
+			    <!-- <li> -->
+				   <!-- <span>my task</span> -->
+				   <!-- <span class="close">&times;</span> -->
+				<!-- </li> -->
+			</ul>
+		</div>
+	</div>
+</section>
+    <script>
+	     var input=document.getElementById("text");
+		  var inputul=document.getElementById("todoul");
+	     function addTask(){
+		      
+			  
+			  
+			  if(input.value.trim()===""){
+			      alert("enter some text");
+				  }
+			  else{
+			  console.log(input.value.trim());
+			    var litag=document.createElement("li");
+			    var spantext=document.createElement("span");
+				var textnode=document.createTextNode(input.value.trim());
+				spantext.appendChild(textnode);
+				spantext.addEventListener("click",(e)=>{
+				   console.log(e.target);
+				   e.target.classList.toggle("done");
+				   })
+				var spanclose=document.createElement("span");
+				spanclose.classList.add("close")
+				spanclose.innerHTML="&times;";
+				spanclose.addEventListener("click",(e)=>{
+				    console.log(e.target.parentElement);
+					var li=e.target.parentElement;
+					li.parentElement.removeChild(li);
+					
+				});
+			     litag.appendChild(spantext);
+				 litag.appendChild(spanclose);
+				 inputul.appendChild(litag);
+				 input.value="";
+			  }
+				  }
+	</script>
+</body>
+</html>
